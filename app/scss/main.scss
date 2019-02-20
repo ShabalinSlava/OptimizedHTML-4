@@ -10,3 +10,16 @@
 	background-color: $accent;
 	color: #fff;
 }
+
+h1 {
+	font-family: 'roboto-example';
+	font-size: 20px;
+
+	@include respond-to(tablet) {
+		font-size: 30px;
+	}
+
+	@include respond-to(desktop) {
+		font-size: 40px;
+	}
+}
