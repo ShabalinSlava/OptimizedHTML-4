@@ -1,5 +1,4 @@
-var syntax        = 'sass', // Syntax: sass or scss;
-		gulpversion   = '4'; // Gulp version: 3 or 4
+var	gulpversion   = '4'; // Gulp version: 3 or 4
 
 var gulp          = require('gulp'),
 		gutil         = require('gulp-util' ),
@@ -26,7 +25,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('styles', function() {
-	return gulp.src('app/'+syntax+'/**/*.'+syntax+'')
+	return gulp.src('app/scss/**/*.scss')
 	.pipe(sass({ outputStyle: 'expanded' }).on("error", notify.onError()))
 	.pipe(rename({ suffix: '.min', prefix : '' }))
 	.pipe(autoprefixer(['last 15 versions']))
@@ -68,7 +67,7 @@ gulp.task('rsync', function() {
 
 if (gulpversion == 3) {
 	gulp.task('watch', ['styles', 'scripts', 'browser-sync'], function() {
-		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', ['styles']);
+		gulp.watch('app/scss/**/*.scss', ['styles']);
 		gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['scripts']);
 		gulp.watch('app/*.html', ['code'])
 	});
@@ -77,7 +76,7 @@ if (gulpversion == 3) {
 
 if (gulpversion == 4) {
 	gulp.task('watch', function() {
-		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', gulp.parallel('styles'));
+		gulp.watch('app/scss/**/*.scss', gulp.parallel('styles'));
 		gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
 		gulp.watch('app/*.html', gulp.parallel('code'))
 	});
